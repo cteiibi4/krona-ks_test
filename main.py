@@ -5,19 +5,13 @@
     isBalanced("{ [ } ]")    --> False
     isBalanced("{ [ ] [] {} }")    --> True
 
-eremeev-dy@crona.ru
 """
-
+PAIR_DICT = {'}': '{', ']': '[', ')': '('}
 CHECK_LIST = ['{ [ ] } )', '{ [ } ]', '{ [ ] [] {} }']
 
 
 def take_pair(for_pair_str):
-    if for_pair_str == '}':
-        return '{'
-    if for_pair_str == ']':
-        return '['
-    if for_pair_str == ')':
-        return '('
+    return PAIR_DICT.get(for_pair_str)
 
 
 def check_pair(value, list_with_value):
