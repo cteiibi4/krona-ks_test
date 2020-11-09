@@ -11,25 +11,29 @@ eremeev-dy@crona.ru
 CHECK_LIST = ['{ [ ] } )', '{ [ } ]', '{ [ ] [] {} }']
 
 
+def take_pair(for_pair_str):
+    if for_pair_str == '}':
+        return '{'
+    if for_pair_str == ']':
+        return '['
+    if for_pair_str == ')':
+        return '('
+
+
+def check_pair(value, list_with_value):
+    if len(list_with_value) > 0 and list_with_value[-1] == take_pair(value):
+        list_with_value.pop()
+    else:
+        return False
+
+
 def is_balansed(str_balanced):
     balance_list = []
     for i in str_balanced:
         if i == '{' or i == '[' or i == '(':
             balance_list.append(i)
-        elif i == '}':
-            if len(balance_list) > 0 and balance_list[-1] == '{':
-                balance_list.pop()
-            else:
-                return False
-        elif i == ']':
-            if len(balance_list) > 0 and balance_list[-1] == '[':
-                balance_list.pop()
-            else:
-                return False
-        elif i == ')':
-            if len(balance_list) > 0 and balance_list[-1] == '(':
-                balance_list.pop()
-            else:
+        if i == '}' or i == ']' or i == ')':
+            if check_pair(i, balance_list) is False:
                 return False
     if len(balance_list) == 0:
         return True
