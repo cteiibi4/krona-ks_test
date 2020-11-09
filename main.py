@@ -10,12 +10,8 @@ PAIR_DICT = {'}': '{', ']': '[', ')': '('}
 CHECK_LIST = ['{ [ ] } )', '{ [ } ]', '{ [ ] [] {} }']
 
 
-def take_pair(for_pair_str):
-    return PAIR_DICT.get(for_pair_str)
-
-
 def check_pair(value, list_with_value):
-    if len(list_with_value) > 0 and list_with_value[-1] == take_pair(value):
+    if len(list_with_value) > 0 and list_with_value[-1] == PAIR_DICT.get(value):
         list_with_value.pop()
     else:
         return False
